@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TransactionsContext } from "../../TransactionsContext";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
 interface Transaction {
@@ -12,7 +12,7 @@ interface Transaction {
 }
 
 export function TransactionTable() {
-  const transactions = useContext(TransactionsContext);
+  const { transactions } = useTransactions();
 
   return (
     <Container>
@@ -32,7 +32,7 @@ export function TransactionTable() {
               <td className={transaction.type}>
                 {new Intl.NumberFormat('pt-BR', {
                   style: 'currency',
-                  currency: 'BRL'                  
+                  currency: 'BRL'
                 }).format(transaction.amount)}
               </td>
               <td>{transaction.category}</td>
